@@ -6,7 +6,6 @@ import {
   Model,
   Table,
 } from "sequelize-typescript";
-import { ApiProperty } from "@nestjs/swagger";
 import { Category } from "src/categories/categories.model";
 
 interface TaskCreationAttrs {

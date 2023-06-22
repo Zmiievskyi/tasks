@@ -10,6 +10,7 @@ import {
 } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { User } from "../users/users.model";
+import { Task } from "src/tasks/tasks.model";
 
 interface CategoryCreationAttrs {
   name: string;
@@ -35,4 +36,7 @@ export class Category extends Model<Category, CategoryCreationAttrs> {
 
   @BelongsTo(() => User)
   user: User;
+
+  @HasMany(() => Task, { onDelete: 'cascade', hooks: true })
+  task: Task;
 }

@@ -15,8 +15,17 @@ export class CategoriesService {
   }
 
   async delete(id: number) {
-    const category = await this.categoryRepository.destroy({ where: { id } });
-    return category;
+    // const category = await this.categoryRepository.destroy({ where: { id } });
+    // return category;
+
+    const category = await Category.findByPk(id);
+    if (category) {
+      await category.destroy();
+      console.log("Category and its tasks have been deleted successfully");
+    } else {
+      console.log("Category not found");
+    }
+    return category
   }
 
   async getAll() {
