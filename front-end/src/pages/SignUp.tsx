@@ -9,24 +9,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useAppDispatch } from "../redux/selectors";
 import { signupAction } from "../redux/operations";
 
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 const validationSchema: yup.Schema<{ email: string; password: string }> =
   yup.object({
     firstName: yup
@@ -156,12 +138,7 @@ export default function SignUp() {
                 helperText={formik.touched.password && formik.errors.password}
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
+           
           </Grid>
           <Button
             type="submit"
@@ -182,7 +159,6 @@ export default function SignUp() {
           </Grid>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 5 }} />
     </Container>
   );
 }

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-// import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/selectors";
 import CategoryActionsModal from "../components/Categories/CategoryActionsModal";
 import CategoriesAPI from "../http/categoriesAPI";

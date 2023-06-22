@@ -9,24 +9,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useAppDispatch } from "../redux/selectors";
 import { signinAction } from "../redux/operations";
 
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 const validationSchema: yup.Schema<{ email: string; password: string }> =
   yup.object({
     email: yup
@@ -42,6 +24,9 @@ const validationSchema: yup.Schema<{ email: string; password: string }> =
   });
 
 const defaultTheme = createTheme();
+
+
+
 
 export default function SignIn() {
 
@@ -117,10 +102,7 @@ const dispatch = useAppDispatch();
                 }
                 helperText={formik.touched.password && formik.errors.password}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+             
               <Button
                 type="submit"
                 fullWidth
@@ -130,11 +112,6 @@ const dispatch = useAppDispatch();
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
                 <Grid item>
                   <NavLink
                     to="/signup"
@@ -145,7 +122,6 @@ const dispatch = useAppDispatch();
               </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

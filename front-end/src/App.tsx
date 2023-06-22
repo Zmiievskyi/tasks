@@ -1,5 +1,5 @@
 import { useEffect, ComponentType } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { SharedLayout } from "./layout/SharedLayout";
 import { Categories, SignIn, SignUp, Tasks, Task } from "./pages";
 import { useAppDispatch, useAppSelector } from "./redux/selectors";
@@ -28,6 +28,24 @@ function App() {
     <SharedLayout title="Refreshing" />
   ) : (
     <Routes>
+      <Route
+        path="/signin"
+        element={
+          <RestrictedRoute
+            redirectTo="/categories"
+            component={() => <SigninComponent />}
+          />
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <RestrictedRoute
+            redirectTo="/categories"
+            component={() => <SignUpComponent />}
+          />
+        }
+      />
       <Route path="/" element={<SharedLayout title={null} />}>
         <Route
           index
@@ -38,24 +56,7 @@ function App() {
             />
           }
         />
-        <Route
-          path="/signin"
-          element={
-            <RestrictedRoute
-              redirectTo="/categories"
-              component={() => <SigninComponent />}
-            />
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <RestrictedRoute
-              redirectTo="/categories"
-              component={() => <SignUpComponent />}
-            />
-          }
-        />
+
         <Route
           path="/categories"
           element={
@@ -75,14 +76,14 @@ function App() {
           }
         />
         <Route
-            path="/categories/:categoryName/:categoryId/task/:taskId"
-            element={
-              <PrivateRoute
-                redirectTo="/signin"
-                component={() => <TaskComponent />}
-              />
-            }
-          />
+          path="/categories/:categoryName/:categoryId/task/:taskId"
+          element={
+            <PrivateRoute
+              redirectTo="/signin"
+              component={() => <TaskComponent />}
+            />
+          }
+        />
       </Route>
     </Routes>
   );

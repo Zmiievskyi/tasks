@@ -1,24 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-// import { getDone, getTodo } from "../operations/boardOperations";
 import {
   refreshUser,
   signupAction,
   signinAction,
   logoutAction,
 } from "./operations";
-
-// export type AuthStateType = {
-//     user: {
-//         name?: string;
-//         email: string;
-//         token: string;
-//     };
-//     status: {
-//         isLogin: boolean;
-//         isLoading: boolean;
-//         isError: boolean;
-//     };
-// };
+import Task from "../models/task";
 
 export interface AuthState {
   user: {
@@ -27,7 +14,7 @@ export interface AuthState {
     email: string;
     token: string;
   };
-  task:any;
+  task:Task;
   status: {
     isLogin: boolean;
     isLoading: boolean;
@@ -43,7 +30,11 @@ const initialState: AuthState = {
     email: "",
     token: "",
   },
-  task: {},
+  task: {
+    name: "",
+    content: "",
+    categoryId: ''
+  },
   status: {
     isLogin: false,
     isLoading: false,
@@ -111,7 +102,6 @@ export const AuthSlice = createSlice({
         state.status.isLoading = false;
         state.status.isLogin = true;
         state.status.isError = false;
-
         state.user = {
           id: payload.id,
           name: payload.name,
@@ -130,7 +120,6 @@ export const AuthSlice = createSlice({
         state.status.isLoading = false;
         state.status.isLogin = true;
         state.status.isError = false;
-
         state.user = {
           id: payload.id,
           name: payload.name,
